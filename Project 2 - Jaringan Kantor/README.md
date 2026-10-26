@@ -96,9 +96,9 @@ Analisis dilakukan dari PC3 setelah cache ARP dikosongkan menggunakan perintah `
 
 ### Bukti Simulasi
 
-![Simulation Mode Bagian 1](screenshots/09a-simulation-bagian-1.png)
+![Simulation Mode Bagian 1](./screenshots/9.simulation-mode(1))
 
-![Simulation Mode Bagian 2](screenshots/09b-simulation-bagian-2.png)
+![Simulation Mode Bagian 2](./screenshots/9.simulation-mode(2))
 
 ### Urutan Komunikasi yang Diamati
 
