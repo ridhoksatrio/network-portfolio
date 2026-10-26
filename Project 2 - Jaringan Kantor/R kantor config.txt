@@ -1,1 +1,58 @@
+!===========================================================
+! Project 2 - Jaringan Kantor (DHCP, DNS, Web, FTP)
+! Perangkat : R-KANTOR (Cisco 2911)
+! Tools     : Cisco Packet Tracer
+!
+! CATATAN: file ini disusun dari perintah yang dipakai di
+! panduan. Sebelum diunggah, SANGAT DISARANKAN mengganti
+! isinya dengan output asli dari routermu:
+!   1. Klik router > tab CLI
+!   2. Ketik: enable
+!   3. Ketik: show running-config
+!   4. Salin seluruh hasilnya ke file ini
+!===========================================================
 
+enable
+configure terminal
+
+hostname R-KANTOR
+
+! --- Interface menuju switch (gateway jaringan kantor) ---
+interface GigabitEthernet0/0
+ description Gateway LAN Kantor
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+exit
+
+! --- DHCP ---
+! IP .1 sampai .99 tidak dibagikan (untuk router dan server)
+ip dhcp excluded-address 192.168.2.1 192.168.2.99
+
+ip dhcp pool KANTOR
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+ dns-server 192.168.2.10
+exit
+
+end
+copy running-config startup-config
+
+!===========================================================
+! Perintah verifikasi
+!===========================================================
+! show ip interface brief
+! show running-config | section dhcp
+! show ip dhcp binding
+
+!===========================================================
+! Ringkasan pengaturan server (lewat GUI, bukan CLI)
+!===========================================================
+! DNS-Server  192.168.2.10  gateway 192.168.2.1  dns 192.168.2.10
+!   Services > DNS (On)
+!   A Record: www.kantor.local -> 192.168.2.11
+!   A Record: ftp.kantor.local -> 192.168.2.12
+! Web-Server  192.168.2.11  gateway 192.168.2.1  dns 192.168.2.10
+!   Services > HTTP (On), index.html diedit dengan teks kustom
+! FTP-Server  192.168.2.12  gateway 192.168.2.1  dns 192.168.2.10
+!   Services > FTP (On), user ftpuser (password lab), permission penuh
+! PC klien: IP Configuration = DHCP
