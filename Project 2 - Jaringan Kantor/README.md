@@ -19,7 +19,7 @@ Pengujian dilakukan dari PC klien. Alur komunikasi jaringan, seperti ARP, DNS, T
 
 ## Topologi Jaringan
 
-![Topologi Jaringan](./screenshots/01.topologi.png)
+![Topologi Jaringan](./screenshots/1. topologi.png)
 
 | Perangkat | Jenis | Keterangan |
 |---|---|---|
